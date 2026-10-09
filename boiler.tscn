@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://6it2ykkj2gnh"]
+[gd_scene load_steps=6 format=3 uid="uid://6it2ykkj2gnh"]
 
 [ext_resource type="Texture2D" uid="uid://bjolhl3ibaohn" path="res://art/boiler_idle.png" id="1_0xx5p"]
+[ext_resource type="Script" uid="uid://hcyppptybho0" path="res://boiler.gd" id="1_p6nih"]
 [ext_resource type="Texture2D" uid="uid://duhsf6jcxhuql" path="res://art/boiler_idle_open.png" id="2_p6nih"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_77ng1"]
@@ -29,14 +30,15 @@ animations = [{
 size = Vector2(28, 17)
 
 [node name="Boiler" type="Area2D"]
+script = ExtResource("1_p6nih")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_77ng1")
-animation = &"open"
-frame = 1
-frame_progress = 1.0
+animation = &"close"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 11.5)
 shape = SubResource("RectangleShape2D_ylvbq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
